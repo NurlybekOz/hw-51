@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Ball from './companents/ball/ball.tsx';
+import {useState} from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [balls, setBalls] = useState([
+    {count: 5},
+    {count: 11},
+    {count: 16},
+    {count: 23},
+    {count: 32}
+  ]);
 
+  const RandomGenerate = () => {
+  const copyBalls = [...balls];
+  const copyBall1 = {...copyBalls[0]};
+  const copyBall2 = {...copyBalls[1]};
+  const copyBall3 = {...copyBalls[2]};
+  const copyBall4 = {...copyBalls[3]};
+  const copyBall5 = {...copyBalls[4]};
+  copyBall1.count = Math.floor(Math.random() * (5 - 1 + 1) + 1);
+  copyBall2.count = Math.floor(Math.random() * (11 - 5 + 1) + 5);
+    copyBall3.count = Math.floor(Math.random() * (16 - 11 + 1) + 11);
+    copyBall4.count = Math.floor(Math.random() * (23 - 16 + 1) + 16);
+    copyBall5.count = Math.floor(Math.random() * (32 - 23 + 1) + 23);
+  copyBalls[0] = copyBall1;
+    copyBalls[1] = copyBall2;
+    copyBalls[2] = copyBall3;
+    copyBalls[3] = copyBall4;
+    copyBalls[4] = copyBall5;
+    setBalls(copyBalls)
+  }
+  const BallsArray = () => {
+    return (
+        <>
+            <div className="Balls">
+            <Ball count={balls[0].count}/>
+            <Ball count={balls[1].count}/>
+            <Ball count={balls[2].count}/>
+            <Ball count={balls[3].count}/>
+            <Ball count={balls[4].count}/>
+            </div>
+        </>
+    )
+  }
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+        <BallsArray></BallsArray>
+      <button onClick={RandomGenerate}>New numbers</button>
     </>
   )
-}
+};
 
 export default App

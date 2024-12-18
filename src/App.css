@@ -3,8 +3,14 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 }
-
+.Balls{
+  display: flex;
+  gap: 30px;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
